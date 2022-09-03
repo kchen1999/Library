@@ -16,6 +16,30 @@
     </div>
     <div class="button-container">
         <button class="new-book-btn">NEW BOOK</button>
+        <div class="modal">
+            <div class="modal-content">
+                <form action="">
+                    <h3>Add New Book</h3>
+                    <div class="form-row">
+                        <label for="title"></label>
+                        <input type="text" id="title" name="title" placeholder="Title">
+                    </div> 
+                    <div class="form-row">
+                        <label for="author"></label>
+                        <input type="text" id="author" name="author" placeholder=" Author">
+                    </div>
+                    <div class="form-row">
+                        <label for="pages"></label>
+                        <input type="text" id="pages" name="pages" placeholder=" Number of pages">
+                    </div>
+                    <div class="is-read-wrapper">
+                        <label for="is-read">Have you read it?</label>
+                        <input type="checkbox" id="is-read" name="is-read">
+                    </div>
+                    <button class="modal-submit" type="button">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="library-container">
     </div>

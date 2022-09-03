@@ -17,20 +17,46 @@ function Book(title, author, pages, isRead) {
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
-    const libraryContainer = document.querySelector('.library-container');
-    const card = document.createElement('div');
-    const title = document.createElement('p');
-    const author = document.createElement('p');
-    const pages = document.createElement('p');
-    card.classList.add('card');
-    title.textContent = book.title;
-    author.textContent = book.author;
-    pages.textContent = book.pages + ' pages';
-    card.append(title);
-    card.append(author);
-    card.append(pages);
-    libraryContainer.append(card);
 }
+
+function displayLibrary() {
+    const libraryContainer = document.querySelector('.library-container');
+    libraryContainer.replaceChildren();
+    myLibrary.forEach(book => {
+        const card = document.createElement('div');
+        const title = document.createElement('p');
+        const author = document.createElement('p');
+        const pages = document.createElement('p');
+        card.classList.add('card');
+        title.textContent = book.title;
+        author.textContent = book.author;
+        pages.textContent = book.pages + ' pages';
+        card.append(title);
+        card.append(author);
+        card.append(pages);
+        libraryContainer.append(card);
+    });
+}
+
+
+const newBookBtn = document.querySelector('.new-book-btn'); 
+const modal = document.querySelector('.modal')
+newBookBtn.addEventListener('click', () => {
+    modal.style.display = 'block'; 
+});
+const submitBtn = document.querySelector('.modal-submit');
+submitBtn.addEventListener('click', () => {
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const isRead = document.getElementById('is-read').checked;
+    const newBook = new Book(title, author, pages, isRead);
+    modal.style.display = 'none';
+    addBookToLibrary(newBook);
+    displayLibrary();
+});
+
+
 
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
@@ -42,4 +68,4 @@ addBookToLibrary(harryPotter);
 addBookToLibrary(windsOfWinter);
 addBookToLibrary(deltoraQuest);
 
-
+displayLibrary();
