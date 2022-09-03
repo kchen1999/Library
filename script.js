@@ -16,6 +16,10 @@ function Book(title, author, pages, isRead, index) {
     }
 }
 
+Book.prototype.changeRead = function() {
+    this.classList.toggle('has-read'); 
+};
+
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
@@ -28,18 +32,29 @@ function displayLibrary() {
         const title = document.createElement('p');
         const author = document.createElement('p');
         const pages = document.createElement('p');
+        const isReadBtn = document.createElement('button');
         const removeBtn = document.createElement('button');
         card.classList.add('card');
+        isReadBtn.classList.add('is-read-btn'); 
         removeBtn.classList.add('remove-btn');
         title.textContent = book.title;
         author.textContent = book.author;
         pages.textContent = book.pages + ' pages';
+        if(book.isRead) {
+            isReadBtn.textContent = "Read";
+            isReadBtn.classList.toggle('has-read')
+        }
+        else {
+            isReadBtn.textContent = "Not read";
+        }
         removeBtn.textContent = "Remove";
         card.append(title);
         card.append(author);
         card.append(pages);
+        card.append(isReadBtn); 
         card.append(removeBtn);
         libraryContainer.append(card); 
+        isReadBtn.addEventListener('click', book.changeRead); 
         removeBtn.addEventListener('click', () => {
             myLibrary.splice(book.index, 1);
             for(let i = book.index; i < myLibrary.length; i++) {
@@ -69,18 +84,5 @@ submitBtn.addEventListener('click', () => {
     addBookToLibrary(newBook);
     displayLibrary();
 });
-
-
-
-
-
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false, 0);
-const harryPotter = new Book('Chamber of Secrets', 'J.K Rowling', 800, true, 1);
-const windsOfWinter = new Book('Winds of Winter', 'George R.R Martin', 1200, false, 2);
-const deltoraQuest = new Book('The Forests of Silence', 'Emily Rodda', 400, true, 3);
-addBookToLibrary(theHobbit);
-addBookToLibrary(harryPotter);
-addBookToLibrary(windsOfWinter);
-addBookToLibrary(deltoraQuest);
 
 displayLibrary();

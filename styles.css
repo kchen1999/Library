@@ -41,6 +41,7 @@ button {
     border-style: none;
     border-radius: 8px;
     padding: 12px 60px;
+    min-width: 181px;
 }
 
 .new-book-btn {
@@ -49,6 +50,14 @@ button {
 
 .remove-btn {
     background-color: #9ca3af;
+}
+
+.is-read-btn {
+    background-color: #f87171; 
+}
+
+.has-read {
+    background-color: #4ade80;
 }
 
 .card {
